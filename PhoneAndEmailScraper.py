@@ -1,44 +1,46 @@
 #3! python3
 
 import re, pyperclip
-
-#TODO: Create a regex for phone numbers
-PhoneNumberRegex=re.compile(r'''
-(
-(\d{3})|(\(\d{3}\))?
-(-)?
-(\d{3})
-(-)
-(\d{4})
-(\s*(ext|x|ext.)\s*(\d{2,5}))?
-)
-''', re.VERBOSE)
-
-
-#TODO: Create a regex for email adresses
-EmailsRegex=re.compile(r'''
-[a-zA-Z0-9.+_]+    #name part
-@    #@symbol
-[a-zA-Z0-9.+_]+    #2nd part
-
-''',re.VERBOSE)
-
-#TODO: Get the text off the clipboard
-
 text=pyperclip.paste()
 
-#TODO: Extract the email/phone fron this list
+def findEmail(text):
+    
+    EmailsRegex=re.compile(r'''
+    [a-zA-Z0-9.+_]+    #name part
+    @    #@symbol
+    [a-zA-Z0-9.+_]+    #2nd part
 
-numbers=PhoneNumberRegex.findall(text)
-emails=EmailsRegex.findall(text)
-allPhoneNumbers=[]
-for PhoneNumber in numbers:
-    allPhoneNumbers.append(PhoneNumber[0])
+    ''',re.VERBOSE)
 
+    emails=EmailsRegex.findall(text)
 
-print(allPhoneNumbers, emails)
-#TODO: Copy the extract email/phone to the clipboard
+    print("\n".join(emails))
 
-results="\n".join(allPhoneNumbers) + "\n" + "\n".join(emails)
-pyperclip.copy(results)
+def findPhoneNumbers(text):
+    
+    PhoneNumberRegex=re.compile(r'''
+    (
+    (\d{3})|(\(\d{3}\))?
+    (-)?
+    (\d{3})
+    (-)
+    (\d{4})
+    (\s*(ext|x|ext.)\s*(\d{2,5}))?
+    )
+    ''', re.VERBOSE)
+
+    numbers=PhoneNumberRegex.findall(text)
+
+    allPhoneNumbers=[]
+    for groups in PhoneNumberRegex.findall(text):
+        phoneNum = ''.join([groups[1], groups[3], groups[5]])
+        if groups[8] != '':
+            phoneNum += ' x' + groups[8]
+        allPhoneNumbers.append(phoneNum)
+
+    print("\n".join(allPhoneNumbers))
+
+findEmail(text)
+findPhoneNumbers(text)
+
 
