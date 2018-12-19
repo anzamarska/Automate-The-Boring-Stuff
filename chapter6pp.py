@@ -18,9 +18,6 @@ for k in colWidths:
     if a == x-1:
         b=b+1
         a=-1
-            
-        
-print(colWidths)
 
 def printTable():
     a=0
