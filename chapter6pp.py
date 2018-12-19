@@ -20,7 +20,6 @@ for k in colWidths:
         a=-1
             
         
-        
 print(colWidths)
 
 def printTable():
