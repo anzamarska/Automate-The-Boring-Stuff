@@ -40,7 +40,7 @@ def findPhoneNumbers(text):
 
     print("\n".join(allPhoneNumbers))
 
-findEmail(text)
-findPhoneNumbers(text)
+#findEmail(text)
+#findPhoneNumbers(text)
 
 
