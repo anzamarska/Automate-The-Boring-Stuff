@@ -14,7 +14,7 @@ def findEmail(text):
 
     emails=EmailsRegex.findall(text)
 
-    print("\n".join(emails))
+    return("\n".join(emails))
 
 def findPhoneNumbers(text):
     
@@ -38,7 +38,7 @@ def findPhoneNumbers(text):
             phoneNum += ' x' + groups[8]
         allPhoneNumbers.append(phoneNum)
 
-    print("\n".join(allPhoneNumbers))
+    return("\n".join(allPhoneNumbers))
 
 #findEmail(text)
 #findPhoneNumbers(text)
