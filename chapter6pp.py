@@ -6,15 +6,19 @@ tableData = [['apples', 'oranges', 'cherries', 'banana'],
 colWidths={"1colWidths":0,"2colWidths":0,"3colWidths":0}
 x=4                     #how many elem are in list in list
 
+a=-1
+b=0
 for k in colWidths:
     v=colWidths[k]
-    a=-1
-    b=0
     while a < x-1:
         a=a+1
         while len(tableData[b][a]) > v:
             v=len(tableData[b][a]) #assigning the value of the longest word from the internal list to the width of the column
             colWidths[k]=v
+    if a == x-1:
+        b=b+1
+        a=-1
+            
         
         
 print(colWidths)
