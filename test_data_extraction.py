@@ -1,3 +1,4 @@
+#! python3
 import PhoneAndEmailScraper, re, pyperclip
 
 text=pyperclip.paste()
