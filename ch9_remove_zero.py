@@ -1,9 +1,9 @@
 import shutil, os, re
 
 zero = re.compile(r'''^(.*?)
-(0*)
+(0{2,})
 (.*?)$
-''')
+''', re.VERBOSE)
 
 for oldFileName in os.listdir('.'):
     mo = zero.search(oldFileName)
@@ -20,3 +20,5 @@ for oldFileName in os.listdir('.'):
     
     print ('Renaming "%s" to "%s"...' % (oldFileName, newFileName))
     #shutil.move(oldFileName, newFileName)
+
+
