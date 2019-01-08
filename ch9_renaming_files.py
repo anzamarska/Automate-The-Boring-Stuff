@@ -8,7 +8,7 @@ AmericanDataStyle = re.compile(r'''^(.*?)
 ((0|1|2|3)?\d)-
 ((19|20) \d\d)
 (.*?)$
-''')
+''', re.VERBOSE)
 
 #    Call os.listdir() to find all the files in the working directory.
 #    Loop over each filename, using the regex to check whether it has a date.
@@ -24,20 +24,15 @@ for amerFilename in os.listdir('.'):
     afterPart  = mo.group(8)
 
 
-    AmericanDataStyle = re.compile(r'''^(1)
-    (2(3))-
-    (4(5))-
-    (6(7))
-    (8)$
-    ''')
-
 #    If it has a date, rename the file with shutil.move().
 
     EuroDataStyle = beforePart + dayPart+ "-" + monthPart + "-" + yearPart + afterPart
     absWorkingDir= os.path.abspath('.')
-    amerFilename = os.path.join(amerFilename)
-    euroFilename = os.path.join(absWorkingDir, euroFilename)
+    amerFilename = os.path.join(absWorkingDir, amerFilename)
+    euroFilename = os.path.join(absWorkingDir, EuroDataStyle)
 
-    print('Renaming "%s" to "%s"...' % (amerFilename, euroFilename))
+    print('Renaming "%s" to "%s"' % (amerFilename, euroFilename))
+    shutil.move(amerFilename, euroFilename)
 
-#shutil.move(amerFilename, euroFilename)
+
+    
