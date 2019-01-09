@@ -45,16 +45,15 @@ for quizNum in range (35):
         answerOptions= wrongAnswers + [correctAnswer]
         random.shuffle(answerOptions)
 
-# Provides the correct answer and three random wrong answers for each question, in random order.
-quizFile.write("%s. What is the capital of %s?\n " %(questionNum + 1, states[questionNum]))
-for i in range(4):
-    quizFile.write("%s. %s\n" % ("ABCD"[i], answerOptions[i]))
-    quizFile.write("\n")
+        # Provides the correct answer and three random wrong answers for each question, in random order.
+        quizFile.write("%s. What is the capital of %s?\n " %(questionNum + 1, states[questionNum]))
+        for i in range(4):
+            quizFile.write("%s. %s\n" % ("ABCD"[i], answerOptions[i]))
 
-answerKeyFile.write("%s. %s\n" % (questionNum +1, "ABCD"[answerOptions.index(correctAnswer)]))
-                   
-quizFile.close()
-answerKeyFile.close()
+        answerKeyFile.write("%s. %s\n" % (questionNum +1, "ABCD"[answerOptions.index(correctAnswer)]))
+                       
+    quizFile.close()
+    answerKeyFile.close()
 
 # Writes the quizzes to 35 text files.
 
