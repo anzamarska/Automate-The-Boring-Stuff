@@ -24,36 +24,37 @@ capitals = {'Alabama': 'Montgomery', 'Alaska': 'Juneau', 'Arizona': 'Phoenix',
 
 # Creates 35 different quizzes.
 
-for numb in range (35):
-    quizFile= open ("quiz%s.txt" % (numb +1), "w")
-    answerFile= open ("anser_quiz%s.txt" % (numb +1), "w")
+for quizNum in range (35):
+    quizFile= open ("capitalsquiz%s.txt" % (quizNum +1), "w")
+    answerKeyFile= open ("capitalsquiz_answers%s.txt" % (quizNum +1), "w")
 
     quizFile.write("Name: \n\nDate: \n\nPeriod:\n\n")
-    quizFile.write((" " * 20) + "State Capitals Quiz (Form %s) \n\n" % (numb + 1))
-
+    quizFile.write((" " * 20) + "State Capitals Quiz (Form %s)" % (quizNum + 1))
+    quizFile.write('\n\n')
+    
     states = list(capitals.keys())
     random.shuffle(states)
     
 
-# Creates 50 multiple-choice questions for each quiz, in random order.
-for questionNum in range(50):
-    correctAnswer= capitals[states[questionNum]]
-    wrongAnswers=list(capitals.values())
-    del wrongAnswers[wrongAnswers.index(correctAnswer)]
-    wrongAnswers=random.sample(wrongAnswers, 3 )
-    answerOptions= wrongAnswers + [correctAnswer]
-    random.shuffle(answerOptions)
+    # Creates 50 multiple-choice questions for each quiz, in random order.
+    for questionNum in range(50):
+        correctAnswer= capitals[states[questionNum]]
+        wrongAnswers=list(capitals.values())
+        del wrongAnswers[wrongAnswers.index(correctAnswer)]
+        wrongAnswers=random.sample(wrongAnswers, 3 )
+        answerOptions= wrongAnswers + [correctAnswer]
+        random.shuffle(answerOptions)
 
 # Provides the correct answer and three random wrong answers for each question, in random order.
-for questionNum in range (50):
-    quizFile.write("%s. What is the capital of %s?\n " %(questionNum + 1, states[questionNum]))
-    for i in range(4):
-        quizFile.write("%s. %s\n" % ("ABCD"[i], answerOptions[i]))
+quizFile.write("%s. What is the capital of %s?\n " %(questionNum + 1, states[questionNum]))
+for i in range(4):
+    quizFile.write("%s. %s\n" % ("ABCD"[i], answerOptions[i]))
+    quizFile.write("\n")
 
-    answerFile.write("%s. %s\n" % (questionNum +1, "ABCD"[answerOptions.index(correctAnswer)]))
+answerKeyFile.write("%s. %s\n" % (questionNum +1, "ABCD"[answerOptions.index(correctAnswer)]))
                    
 quizFile.close()
-answerFile.close()
+answerKeyFile.close()
 
 # Writes the quizzes to 35 text files.
 
