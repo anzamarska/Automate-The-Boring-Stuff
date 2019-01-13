@@ -15,7 +15,6 @@ def backupToZip(folder):
     backupZip = zipfile.ZipFile(zipFilename, "w")
     
     for foldername, subfolders, filenames in os.walk(folder):
-        print("The folderis" + foldername)
         print('Adding files in %s...' % (foldername))
         # Add the current folder to the ZIP file.
         backupZip.write(foldername)
