@@ -1,10 +1,15 @@
 import re
 
-text = open("ch8_mad_libs.txt", "w")
+file = open("ch8_mad_libs.txt", "w")
 
+adj=re.compile(r'ADJECTIVE')
 
 input1=str(input("Enter a adjective"))
+fileStr=str(file)
 
-text=re.sub(r'ADJECTIVE',input1, text)
+fileStr=adj.sub(input1, fileStr)
 
-text.close()
+file.write(fileStr)
+
+
+file.close()
