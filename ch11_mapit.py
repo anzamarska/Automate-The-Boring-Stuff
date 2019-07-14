@@ -2,6 +2,7 @@
 
 import webbrowser, sys, pyperclip
 
+
 sys.argv
 
 if len(sys.argv) > 1:
